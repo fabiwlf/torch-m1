@@ -6,7 +6,7 @@ ENV PYTHONUNBUFFERED True
 ENV VIRTUAL_ENV=/opt/venv
 
 # If one wants to build
-RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc libsndfile1-dev jq sox cmake libopenblas-dev cargo gfortran liblapack-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc libsndfile1-dev jq sox cmake libopenblas-dev cargo gfortran liblapack-dev libomp-dev libopenmpi-dev && rm -rf /var/lib/apt/lists/*
 
 # Install production dependencies.
 RUN python -m venv $VIRTUAL_ENV && \
@@ -18,7 +18,7 @@ RUN python -m venv $VIRTUAL_ENV && \
 
 FROM python:3.8.9
 
-RUN apt-get update -y && apt-get install -y --no-install-recommends libsndfile1 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y && apt-get install -y --no-install-recommends libsndfile1 libomp-dev && rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONUNBUFFERED True
 
